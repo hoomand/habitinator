@@ -10,43 +10,143 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
-
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#">Habitinator</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to 'Home', root_path, class: 'nav-link' %>
-      </li>
-    </ul>
-  </div>
+<body id="page-top">
+<!-- Navigation -->
+<a class="menu-toggle rounded" href="#">
+  <i class="fa fa-bars"></i>
+</a>
+<nav id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+    <li class="sidebar-brand">
+      <a class="js-scroll-trigger" href="#page-top">Start Taking Control</a>
+    </li>
+    <li class="sidebar-nav-item">
+      <a class="js-scroll-trigger" href="#page-top">Home</a>
+    </li>
+    <li class="sidebar-nav-item">
+      <a class="js-scroll-trigger" href="#about">About</a>
+    </li>
+    <li class="sidebar-nav-item">
+      <a class="js-scroll-trigger" href="#screenshots">Screenshots</a>
+    </li>
+  </ul>
 </nav>
 
-<section>
-  <div class="container-fluid">
+<!-- Header -->
+<header class="masthead d-flex">
+  <div class="container text-center my-auto">
+    <h1 class="mb-1">Habitinator</h1>
+    <h3 class="mb-5">
+      <em>An open source habit tracker</em>
+    </h3>
+    <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Sign Up/In</a>
+    <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+  </div>
+  <div class="overlay"></div>
+</header>
+
+<!-- About -->
+<section class="content-section bg-light" id="about">
+  <div class="container text-center">
     <div class="row">
-      <div class="col-lg-8">
-        <% if flash[:notice] %>
-          <div class="alert alert-success"><%= flash[:notice] %></div>
-        <% end %>
-
-        <% if flash[:alert] %>
-          <div class="alert alert-danger"><%= flash[:alert] %></div>
-        <% end %>
-
-        <%= yield %>
-      </div>
-      <div class="col-lg-4">
-        Sidebar
+      <div class="col-lg-10 mx-auto">
+        <h2>Habitinator helps you make habits!</h2>
+        <p class="lead mb-5">
+          You can define a category like <i>Books</i> and specify a measuring unit like <i>page number</i>.
+          Then you will be able to create new goals based on defined categories, like
+          <i>
+            Reading
+            <a href="https://www.goodreads.com/book/show/18143977-all-the-light-we-cannot-see" target="_blank">
+              All the Lights We Cannot See
+            </a>
+          </i>
+          and track number of pages covered daily/weekly/monthly.
+        </p>
+        <a class="btn btn-dark btn-xl js-scroll-trigger" href="#screenshots">See Screenshots!</a>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Screenshots -->
+<section class="content-section" id="screenshots">
+  <div class="container">
+    <div class="content-section-heading text-center">
+      <h2 class="mb-5">Screenshots</h2>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-lg-6">
+        <a class="portfolio-item" href="#">
+              <span class="caption">
+                <span class="caption-content">
+                  <h2>Stationary</h2>
+                  <p class="mb-0">A yellow pencil with envelopes on a clean, blue backdrop!</p>
+                </span>
+              </span>
+          <%= image_tag('screenshots/1.jpg', class: 'img-fluid') %>
+        </a>
+      </div>
+      <div class="col-lg-6">
+        <a class="portfolio-item" href="#">
+              <span class="caption">
+                <span class="caption-content">
+                  <h2>Ice Cream</h2>
+                  <p class="mb-0">A dark blue background with a colored pencil, a clip, and a tiny ice cream cone!</p>
+                </span>
+              </span>
+          <%= image_tag('screenshots/2.jpg', class: 'img-fluid') %>
+        </a>
+      </div>
+      <div class="col-lg-6">
+        <a class="portfolio-item" href="#">
+              <span class="caption">
+                <span class="caption-content">
+                  <h2>Strawberries</h2>
+                  <p class="mb-0">Strawberries are such a tasty snack, especially with a little sugar on top!</p>
+                </span>
+              </span>
+          <%= image_tag('screenshots/3.jpg', class: 'img-fluid') %>
+        </a>
+      </div>
+      <div class="col-lg-6">
+        <a class="portfolio-item" href="#">
+              <span class="caption">
+                <span class="caption-content">
+                  <h2>Workspace</h2>
+                  <p class="mb-0">A yellow workspace with some scissors, pencils, and other objects.</p>
+                </span>
+              </span>
+          <%= image_tag('screenshots/4.jpg', class: 'img-fluid') %>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer text-center">
+  <div class="container">
+    <ul class="list-inline mb-5">
+      <li class="list-inline-item">
+        <a class="social-link rounded-circle text-white mr-3" href="#">
+          <i class="icon-social-twitter"></i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="social-link rounded-circle text-white" href="#">
+          <i class="icon-social-github"></i>
+        </a>
+      </li>
+    </ul>
+    <p class="text-muted small mb-0">Copyright &copy; Habitinator 2018</p>
+  </div>
+</footer>
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+  <i class="fa fa-angle-up"></i>
+</a>
+
+
+<%= javascript_include_tag 'stylish-portfolio', 'data-turbolinks-track': 'reload' %>
 </body>
 </html>
