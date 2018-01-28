@@ -1,4 +1,4 @@
-class Admin::GoalsController < ApplicationController
+class Admin::GoalsController < Admin::ApplicationController
   before_action :authenticate_user!
   def index
   end
