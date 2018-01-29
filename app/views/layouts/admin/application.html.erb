@@ -2,8 +2,16 @@
 <html>
 <head>
   <title><%= Rails.application.config.application_name %> | Admin</title>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
-  <body>
-  <%= yield %>
-  </body>
+<body>
+<%= yield %>
+<% if user_signed_in? %>
+  <%= link_to('Logout', destroy_user_session_path, class: 'btn btn-primary btn-xl js-scroll-trigger"') %>
+<% else %>
+  <%= link_to('Login', new_user_session_path, class: 'btn btn-primary btn-xl js-scroll-trigger"') %>
+<% end %>
+</body>
 </html>

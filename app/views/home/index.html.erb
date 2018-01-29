@@ -27,7 +27,7 @@
       <em>An open source habit tracker</em>
     </h3>
     <% if user_signed_in? %>
-      <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-xl js-scroll-trigger"') %>
+      <%= link_to('Logout', destroy_user_session_path, class: 'btn btn-primary btn-xl js-scroll-trigger"') %>
     <% else %>
       <%= link_to('Login', new_user_session_path, class: 'btn btn-primary btn-xl js-scroll-trigger"')  %>
     <% end %>
