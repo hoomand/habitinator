@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Habitinator</title>
+  <title><%= Rails.application.config.application_name %></title>
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -39,7 +39,11 @@
     <h3 class="mb-5">
       <em>An open source habit tracker</em>
     </h3>
-    <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Sign Up/In</a>
+    <% if user_signed_in? %>
+        <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-xl js-scroll-trigger"') %>
+    <% else %>
+        <%= link_to('Login', new_user_session_path, class: 'btn btn-primary btn-xl js-scroll-trigger"')  %>
+    <% end %>
     <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
   </div>
   <div class="overlay"></div>
