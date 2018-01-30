@@ -1,0 +1,16 @@
+/* line 1, /Users/hoomandb/Code/rails/habitinator/app/assets/stylesheets/devise.css.scss */
+.field_with_errors {
+  width: 100%;
+}
+/* line 3, /Users/hoomandb/Code/rails/habitinator/app/assets/stylesheets/devise.css.scss */
+.field_with_errors .form-control {
+  width: 100%;
+  border: 1px red solid;
+}
+
+/* line 10, /Users/hoomandb/Code/rails/habitinator/app/assets/stylesheets/devise.css.scss */
+#error_explanation h2 {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #B00100;
+}
