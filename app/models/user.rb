@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   has_many :categories, dependent: :destroy
   has_many :goals, through: :categories
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

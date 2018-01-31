@@ -8,10 +8,11 @@ Rails.application.routes.draw do
     resources :categories
     resources :users
 
+    get 'home/index'
   end
 
   authenticated :user do
-    root to: 'admin/goals#index', as: :authenticated_root
+    root to: 'admin/home#index', as: :authenticated_root
   end
 
   root to: "home#index"
