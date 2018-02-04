@@ -13,6 +13,20 @@
       <%= f.email_field :email, class: 'form-control', autofocus: true, id: 'email', placeholder: 'you@example.com' %>
     </div>
   </div>
+  <div class="form-group has-danger">
+    <%= f.label(:first_name, 'First Name', class: 'sr-only') %>
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+      <div class="input-group-addon" style="width: 2.6rem"><%= fa_icon 'user' %></div>
+      <%= f.text_field :first_name, class: 'form-control', autofocus: true, id: 'first_name', placeholder: 'John' %>
+    </div>
+  </div>
+  <div class="form-group has-danger">
+    <%= f.label(:last_name, 'Last Name', class: 'sr-only') %>
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+      <div class="input-group-addon" style="width: 2.6rem"><%= fa_icon 'user' %></div>
+      <%= f.text_field :last_name, class: 'form-control', autofocus: true, id: 'last_name', placeholder: 'Doe' %>
+    </div>
+  </div>
   <div class="form-group">
     <%= f.label(:password, 'Password', class: 'sr-only') %>
     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
