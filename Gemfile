@@ -41,7 +41,7 @@ group :development, :test do
   gem 'selenium-webdriver'
 
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'guard-rspec'
   gem 'spring-commands-rspec'
   gem 'vcr'
