@@ -1,0 +1,50 @@
+<div class="card-header d-flex align-items-center">
+  <h3 class="h4">Add Category</h3>
+</div>
+<div class="card-body">
+  <%= form_for [:admin, category], html: {class: 'form-horizontal'} do |f| %>
+    <% if category.errors.any? %>
+      <% category.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger"><%= msg %></div>
+      <% end %>
+    <% end %>
+
+    <div class="form-group row">
+      <%= f.label :name, class: 'col-sm-3 form-control-label' %>
+      <div class="col-sm-9">
+        <%= f.text_field :name, class: 'form-control', placeholder: 'book, video training, kindle book' %>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="form-group row">
+      <%= f.label :unit_type, 'Unit Type', class: 'col-sm-3 form-control-label' %>
+      <div class="col-sm-3">
+        <%= f.radio_button :unit_type, 'number' %>
+        <%= f.label "unit_type_number", 'Number' %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.radio_button :unit_type, 'percent' %>
+        <%= f.label "unit_type_percent", 'Percent' %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.radio_button :unit_type, 'boolean' %>
+        <%= f.label "unit_type_boolean", 'True/False' %>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="form-group row">
+      <%= f.label :unit_name, 'Unit Name', class: 'col-sm-3 form-control-label' %>
+      <div class="col-sm-9">
+        <%= f.text_field :unit_name, class: 'form-control', placeholder: 'pages (i.e. for a book category), clips (i.e. for a video training category)' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-3">&nbsp;</div>
+      <div class="col-sm-4">
+        <%= link_to 'Cancel', admin_categories_path, class: 'btn btn-secondary' %>
+        <%= f.submit "Submit", class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>
