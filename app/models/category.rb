@@ -6,4 +6,7 @@ class Category < ApplicationRecord
       number: 1,
       percent: 2
   }
+
+  validates :name, presence: true
+  validates :unit_type, presence: true
 end
