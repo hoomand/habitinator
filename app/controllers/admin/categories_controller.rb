@@ -9,7 +9,7 @@ class Admin::CategoriesController < Admin::ApplicationController
     @category = Category.new(category_params)
     @category.user = current_user
     if @category.save
-      flash[:notice] = 'Category created'
+      flash[:notice] = 'Category created successfully'
       redirect_to admin_categories_path
     else
       flash[:alert] = 'Invalid category'
