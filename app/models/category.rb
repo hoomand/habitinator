@@ -15,6 +15,6 @@ class Category < ApplicationRecord
   end
 
   def updated_at_formatted
-    created_at.to_time.strftime('%B %e at %l:%M %p')
+    updated_at.to_time.strftime('%B %e at %l:%M %p')
   end
 end
