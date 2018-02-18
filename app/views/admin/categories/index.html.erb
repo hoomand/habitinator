@@ -25,7 +25,7 @@
             <td><%= category.created_at_formatted %></td>
             <td><%= category.updated_at_formatted %></td>
             <td>
-              <%= link_to(edit_admin_category_path(category)) do %>
+              <%= link_to(edit_admin_category_path(category), id: "edit_category_#{category.id}") do %>
                 <%= fa_icon 'edit' %>
 
               <% end %>

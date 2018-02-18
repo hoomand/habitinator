@@ -27,7 +27,20 @@ feature "category management", type: :feature do
       fill_in 'category[unit_name]', with: category_book.unit_name
       click_button 'Submit'
 
-    expect(page).to have_content "Category created successfully"
+      expect(page).to have_content "Name can't be blank"
+    end
+
+    scenario 'edits category' do
+      category_book = create(:category_book, user: @user)
+      visit admin_categories_path
+      click_link("edit_category_#{category_book.id}")
+      fill_in 'category[name]', with: category_book.name + '_edited'
+      choose 'category_unit_type_percent'
+      fill_in 'category[unit_name]', with: category_book.unit_name + '_edited'
+      click_button 'Submit'
+
+      expect(page).to have_content "Category updated"
+    end
   end
 
   context 'anonymous user gets denied' do
