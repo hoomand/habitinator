@@ -41,6 +41,16 @@ feature "category management", type: :feature do
 
       expect(page).to have_content "Category updated"
     end
+
+    scenario 'deletes category', js: true do
+      category_book = create(:category_book, user: @user)
+      visit admin_categories_path
+      page.accept_alert 'Are you sure?' do
+        click_link("delete_category_#{category_book.id}")
+      end
+
+      expect(page).to have_content "Category #{category_book.name} was deleted successfully"
+    end
   end
 
   context 'anonymous user gets denied' do
@@ -51,6 +61,13 @@ feature "category management", type: :feature do
 
     scenario 'creating categories' do
       visit new_admin_category_path
+      expect(page).to have_content "You need to sign in or sign up before continuing"
+    end
+
+    scenario 'editing categories' do
+      user = create(:user)
+      category_book = create(:category_book, user: user)
+      visit edit_admin_category_path(category_book)
       expect(page).to have_content "You need to sign in or sign up before continuing"
     end
   end

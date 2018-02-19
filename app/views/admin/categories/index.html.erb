@@ -31,7 +31,12 @@
               <% end %>
             </td>
             <td>
-              <%= link_to(admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, authenticity_token: true) do %>
+              <%= link_to(
+                      admin_category_path(category),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' },
+                      authenticity_token: true,
+                      id: "delete_category_#{category.id}") do %>
                 <%= fa_icon 'trash' %>
 
               <% end %>
