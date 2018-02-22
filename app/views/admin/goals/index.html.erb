@@ -1,2 +1,51 @@
-<h1>Admin::Goals#index</h1>
-<p>Find me in app/views/admin/goals/index.html.erb</p>
+<div class="card">
+  <div class="card-header d-flex align-items-center">
+    <h3 class="h4">Goals</h3>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive table-striped">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Frequency</th>
+          <th>Creation Date</th>
+          <th>Last Update</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @goals.each do |goal| %>
+          <tr>
+            <td><%= goal.name %></td>
+            <td><%= goal.category.name %></td>
+            <td><%= goal.frequency %></td>
+            <td><%= goal.created_at_formatted %></td>
+            <td><%= goal.updated_at_formatted %></td>
+            <td>
+              <%= link_to(edit_admin_goal_path(goal), id: "edit_goal_#{goal.id}") do %>
+                <%= fa_icon 'edit' %>
+
+              <% end %>
+            </td>
+            <td>
+              <%= link_to(
+                      admin_goal_path(goal),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' },
+                      authenticity_token: true,
+                      id: "delete_goal_#{goal.id}") do %>
+                <%= fa_icon 'trash' %>
+
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= link_to 'Add', new_admin_goal_path, class: 'btn btn-primary' %>
+  </div>
+</div>
