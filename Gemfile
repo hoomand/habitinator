@@ -74,6 +74,7 @@ gem 'font-awesome-rails'
 gem 'simple-line-icons-rails'
 gem 'jquery-easing-rails'
 gem 'will_paginate', '~> 3.0'
+gem 'jquery-ui-rails'
 
 # For user authentication
 gem 'devise'
