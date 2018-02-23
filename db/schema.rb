@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180124005552) do
+ActiveRecord::Schema.define(version: 20180223022736) do
 
   create_table "categories", force: :cascade do |t|
     t.integer "user_id"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20180124005552) do
     t.string "name"
     t.date "end_target"
     t.decimal "frequency"
-    t.integer "period"
+    t.integer "goal_value"
     t.boolean "archived"
     t.boolean "new_entry_add_to_total"
     t.datetime "created_at", null: false
