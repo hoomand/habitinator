@@ -1,0 +1,66 @@
+<div class="card-body">
+  <%= form_for [:admin, goal], html: {class: 'form-horizontal'} do |f| %>
+    <% if goal.errors.any? %>
+      <% goal.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger"><%= msg %></div>
+      <% end %>
+    <% end %>
+
+    <div class="form-group row">
+      <%= f.label :name, class: 'col-sm-3 form-control-label' %>
+      <div class="col-sm-9">
+        <%= f.text_field :name, class: 'form-control', placeholder: 'read Ready Player One' %>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="form-group row">
+      <%= f.label :category, class: 'col-sm-3 form-control-label' %>
+      <div class="col-sm-9">
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {prompt: false}, class: 'form-control') %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :frequency, class: 'col-sm-3 form-control-label' %>
+      <div class="col-sm-3">
+        <%= f.radio_button :frequency, 'daily' %>
+        <%= f.label "frequency_daily", 'Daily' %>
+      </div>
+
+      <div class="col-sm-3">
+        <%= f.radio_button :frequency, 'weekly' %>
+        <%= f.label "frequency_weekly", 'Weekly' %>
+      </div>
+
+      <div class="col-sm-3">
+        <%= f.radio_button :frequency, 'monthly' %>
+        <%= f.label "frequency_monthly", 'Monthly' %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <%= f.label :goal_value, class: 'col-sm-3 form-control-label' %>
+      <div class="col-sm-9">
+        <%= f.text_field :goal_value, class: 'form-control', placeholder: '500' %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <%= f.label :target_date, class: 'col-sm-3 form-control-label' %>
+      <div class="col-sm-9">
+        <%= f.text_field :end_target, class: 'form-control datepicker' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-3">&nbsp;</div>
+      <div class="col-sm-4">
+        <%= f.submit "Submit", class: 'btn btn-primary' %>
+        <%= link_to 'Cancel', admin_categories_path, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<script>
+  $(function () {
+    $('.datepicker').datepicker({dateFormat: "yy-mm-dd"}).val();
+  });
+</script>

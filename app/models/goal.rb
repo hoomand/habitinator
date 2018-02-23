@@ -4,8 +4,6 @@ class Goal < ApplicationRecord
   enum frequency: {
       daily: 0,
       weekly: 1,
-      bi_weekly: 2,
-      monthly:3,
-      yearly: 4
+      monthly:3
   }
 end
