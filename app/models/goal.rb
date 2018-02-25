@@ -6,4 +6,6 @@ class Goal < ApplicationRecord
       weekly: 1,
       monthly:3
   }
+
+  validates :name, presence: true
 end
