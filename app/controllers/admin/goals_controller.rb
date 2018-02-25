@@ -40,7 +40,12 @@ class Admin::GoalsController < Admin::ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    @goal = Goal.find(params[:id])
+    @goal.delete
+
+    flash[:notice] = "Goal #{@goal.name} was successfully deleted"
+    redirect_to admin_goals_path
   end
 
   private
