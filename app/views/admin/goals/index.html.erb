@@ -10,6 +10,7 @@
           <th>Name</th>
           <th>Category</th>
           <th>Frequency</th>
+          <th>Add To Total</th>
           <th>Creation Date</th>
           <th>Last Update</th>
           <th>&nbsp;</th>
@@ -22,6 +23,7 @@
             <td><%= goal.name %></td>
             <td><%= goal.category.name %></td>
             <td><%= goal.frequency %></td>
+            <td><%= goal.new_entry_add_to_total ? 'Yes' : 'No' %></td>
             <td><%= goal.created_at_formatted %></td>
             <td><%= goal.updated_at_formatted %></td>
             <td>

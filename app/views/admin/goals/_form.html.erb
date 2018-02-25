@@ -49,7 +49,13 @@
         <%= f.text_field :end_target, class: 'form-control datepicker' %>
       </div>
     </div>
+    <div class="form-group row">
 
+      <%= f.label :new_entry_add_to_total, 'Add new entries to total', class: 'col-sm-3 form-control-label' %>
+      <div class="col-sm-9">
+        <%= f.check_box :new_entry_add_to_total, class: 'form-control' %>
+      </div>
+    </div>
     <div class="form-group row">
       <div class="col-sm-3">&nbsp;</div>
       <div class="col-sm-4">
