@@ -25,9 +25,19 @@ class Admin::GoalsController < Admin::ApplicationController
   end
 
   def edit
+    @goal = Goal.find(params[:id])
+    @categories = Category.all
   end
 
   def update
+    @goal = Goal.find(params[:id])
+    if @goal.update(goal_params)
+      flash[:notice] = 'Goal updated'
+      redirect_to admin_goals_path
+    else
+      flash[:alert] = 'Could not update the goal'
+      redirect_to edit_admin_goal_path(params[:id])
+    end
   end
 
   def delete
@@ -36,12 +46,12 @@ class Admin::GoalsController < Admin::ApplicationController
   private
   def goal_params
     params.require(:goal).permit(
-                             :name,
-                             :category_id,
-                             :end_target,
-                             :frequency,
-                             :goal_value,
-                             :new_entry_add_to_total
+        :name,
+        :category_id,
+        :end_target,
+        :frequency,
+        :goal_value,
+        :new_entry_add_to_total
     )
   end
 end
