@@ -8,4 +8,5 @@ class Goal < ApplicationRecord
   }
 
   validates :name, presence: true
+  validates :frequency, presence: true
 end
