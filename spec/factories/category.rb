@@ -4,4 +4,10 @@ FactoryBot.define do
     unit_type 'number'
     unit_name 'page'
   end
+
+  factory :category_gym, class: 'Category' do
+    name 'gym'
+    unit_type 'boolean'
+    unit_name 'session'
+  end
 end
