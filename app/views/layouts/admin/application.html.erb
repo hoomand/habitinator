@@ -47,17 +47,17 @@
     <div class="main-menu">
       <h5 class="sidenav-heading">Main</h5>
       <ul id="side-main-menu" class="side-menu list-unstyled">
-        <li>
+        <li class="<%= active_controller?('admin/home') %>">
           <%= link_to(admin_home_index_path) do %>
             <%= fa_icon 'home' %>Home
           <% end %>
         </li>
-        <li>
+        <li class="<%= active_controller?('admin/goals') %>">
           <%= link_to(admin_goals_path) do %>
             <%= fa_icon 'bullseye' %>Goals
           <% end %>
         </li>
-        <li>
+        <li class="<%= active_controller?('admin/categories') %>">
           <%= link_to(admin_categories_path) do %>
             <%= fa_icon 'list' %>Categories
           <% end %>
