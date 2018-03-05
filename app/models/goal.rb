@@ -4,7 +4,8 @@ class Goal < ApplicationRecord
   enum frequency: {
       daily: 0,
       weekly: 1,
-      monthly:3
+      monthly: 3,
+      other: 4
   }
 
   validates :name, presence: true

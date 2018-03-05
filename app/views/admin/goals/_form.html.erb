@@ -7,57 +7,58 @@
     <% end %>
 
     <div class="form-group row">
-      <%= f.label :name, class: 'col-sm-3 form-control-label' %>
-      <div class="col-sm-9">
+      <%= f.label :name, class: 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
         <%= f.text_field :name, class: 'form-control', placeholder: 'read Ready Player One' %>
       </div>
     </div>
     <div class="line"></div>
     <div class="form-group row">
-      <%= f.label :category, class: 'col-sm-3 form-control-label' %>
-      <div class="col-sm-9">
+      <%= f.label :category, class: 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
         <%= f.collection_select(:category_id, Category.all, :id, :name, {prompt: false}, class: 'form-control') %>
       </div>
     </div>
 
     <div class="form-group row">
-      <%= f.label :frequency, class: 'col-sm-3 form-control-label' %>
-      <div class="col-sm-3">
+      <%= f.label :target, class: 'col-sm-2 form-control-label' %>
+      <div class="col-sm-2">
         <%= f.radio_button :frequency, 'daily' %>
         <%= f.label "frequency_daily", 'Daily' %>
       </div>
 
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         <%= f.radio_button :frequency, 'weekly' %>
         <%= f.label "frequency_weekly", 'Weekly' %>
       </div>
 
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         <%= f.radio_button :frequency, 'monthly' %>
         <%= f.label "frequency_monthly", 'Monthly' %>
       </div>
+
+      <div class="col-sm-4" style="display:flex; flex-direction:row">
+        <%= f.radio_button :frequency, 'other' %>
+        <%= f.label "frequency_other", 'Other' %>
+        &nbsp;&nbsp;
+        <%= f.text_field :end_target, class: 'datepicker', style: 'flex: 1' %>
+      </div>
     </div>
     <div class="form-group row">
-      <%= f.label :goal_value, class: 'col-sm-3 form-control-label' %>
-      <div class="col-sm-9">
+      <%= f.label :goal_value, class: 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
         <%= f.text_field :goal_value, class: 'form-control', placeholder: '500' %>
       </div>
     </div>
     <div class="form-group row">
-      <%= f.label :target_date, class: 'col-sm-3 form-control-label' %>
-      <div class="col-sm-9">
-        <%= f.text_field :end_target, class: 'form-control datepicker' %>
-      </div>
-    </div>
-    <div class="form-group row">
 
-      <%= f.label :new_entry_add_to_total, 'Add new entries to total', class: 'col-sm-3 form-control-label' %>
-      <div class="col-sm-9">
+      <%= f.label :new_entry_add_to_total, 'Add new entries to total', class: 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
         <%= f.check_box :new_entry_add_to_total, class: 'form-control' %>
       </div>
     </div>
     <div class="form-group row">
-      <div class="col-sm-3">&nbsp;</div>
+      <div class="col-sm-2">&nbsp;</div>
       <div class="col-sm-4">
         <%= f.submit "Submit", class: 'btn btn-primary' %>
         <%= link_to 'Cancel', admin_categories_path, class: 'btn btn-secondary' %>
