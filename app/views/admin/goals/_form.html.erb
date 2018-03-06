@@ -23,25 +23,26 @@
     <div class="form-group row">
       <%= f.label :target, class: 'col-sm-2 form-control-label' %>
       <div class="col-sm-2">
-        <%= f.radio_button :frequency, 'daily' %>
+        <%= f.radio_button :frequency, 'daily', onclick: "disable_end_target()" %>
         <%= f.label "frequency_daily", 'Daily' %>
       </div>
 
       <div class="col-sm-2">
-        <%= f.radio_button :frequency, 'weekly' %>
+        <%= f.radio_button :frequency, 'weekly', onclick: "disable_end_target()" %>
         <%= f.label "frequency_weekly", 'Weekly' %>
       </div>
 
       <div class="col-sm-2">
-        <%= f.radio_button :frequency, 'monthly' %>
+        <%= f.radio_button :frequency, 'monthly', onclick: "disable_end_target()" %>
         <%= f.label "frequency_monthly", 'Monthly' %>
       </div>
 
       <div class="col-sm-4" style="display:flex; flex-direction:row">
-        <%= f.radio_button :frequency, 'other' %>
+        <%= f.radio_button :frequency, 'other', onclick: "enable_end_target()" %>
+        &nbsp;
         <%= f.label "frequency_other", 'Other' %>
         &nbsp;&nbsp;
-        <%= f.text_field :end_target, class: 'datepicker', style: 'flex: 1' %>
+        <%= f.text_field :end_target, class: 'datepicker', style: 'flex: 1', id: 'end_target_id' %>
       </div>
     </div>
     <div class="form-group row">
@@ -61,13 +62,25 @@
       <div class="col-sm-2">&nbsp;</div>
       <div class="col-sm-4">
         <%= f.submit "Submit", class: 'btn btn-primary' %>
-        <%= link_to 'Cancel', admin_categories_path, class: 'btn btn-secondary' %>
+        <%= link_to 'Cancel', admin_goals_path, class: 'btn btn-secondary' %>
       </div>
     </div>
   <% end %>
 </div>
 <script>
+  <% if goal.new_record? || goal.frequency != 'other' %>
+    document.getElementById('end_target_id').disabled = true;
+  <% end %>
   $(function () {
     $('.datepicker').datepicker({dateFormat: "yy-mm-dd"}).val();
   });
+
+  function disable_end_target() {
+    document.getElementById('end_target_id').value = '';
+    document.getElementById('end_target_id').disabled = true;
+  }
+
+  function enable_end_target() {
+    document.getElementById('end_target_id').disabled = false;
+  }
 </script>
