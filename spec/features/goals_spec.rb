@@ -28,6 +28,27 @@ feature "goal management", type: :feature do
       click_button 'Submit'
       expect(page).to have_content "Goal created successfully"
     end
+
+    scenario 'edits book-reading goal' do
+      read_book = create(:read_Ready_Player_One_book, category: @cb)
+      visit admin_goals_path
+      click_link("edit_goal_#{read_book.id}")
+      fill_in 'goal[name]', with: "#{read_book.name}_editted"
+      select @cg.name, from: 'goal[category_id]'
+      choose "goal_frequency_monthly"
+      click_button 'Submit'
+      expect(page).to have_content "Goal updated"
+    end
+
+    scenario 'delete goal', js: true do
+      read_book = create(:read_Ready_Player_One_book, category: @cb)
+      visit admin_goals_path
+      page.accept_alert 'Are you sure?' do
+        click_link("delete_goal_#{read_book.id}")
+      end
+
+      expect(page).to have_content "Goal #{read_book.name} was successfully deleted"
+    end
   end
 end
 
