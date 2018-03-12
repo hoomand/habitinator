@@ -7,15 +7,15 @@ feature "goal management", type: :feature do
     before(:each) do
       @user = create(:user)
       login_as @user
-      @cb = create(:category_book, user: @user)
-      @cg = create(:category_gym, user: @user)
+      @category_book = create(:category_book, user: @user)
+      @category_gym = create(:category_gym, user: @user)
       @category_kindle = create(:category_kindle, user: @user)
     end
     scenario 'creates a book-reading goal' do
-      read_book = build(:read_Ready_Player_One_book, category: @cb)
+      read_book = build(:read_Ready_Player_One_book, category: @category_book)
       visit new_admin_goal_path
       fill_in 'goal[name]', with: read_book.name
-      select @cb.name, from: "goal[category_id]"
+      select @category_book.name, from: "goal[category_id]"
       choose "goal_frequency_#{read_book.frequency}"
 
       # When category is numeric, we should be able to enter a goal value
@@ -28,10 +28,10 @@ feature "goal management", type: :feature do
     end
 
     scenario 'creates a gym going goal' do
-      gym = build(:attend_bodypump, category: @cg)
+      gym = build(:attend_bodypump, category: @category_gym)
       visit new_admin_goal_path
       fill_in 'goal[name]', with: gym.name
-      select @cg.name, from: "goal[category_id]"
+      select @category_gym.name, from: "goal[category_id]"
       choose "goal_frequency_#{gym.frequency}"
 
       # When category is not of type numeric, goal value should not be visible
@@ -43,7 +43,7 @@ feature "goal management", type: :feature do
     end
 
     scenario 'edits book-reading goal' do
-      read_book = create(:read_Ready_Player_One_book, category: @cb)
+      read_book = create(:read_Ready_Player_One_book, category: @category_book)
       visit admin_goals_path
       click_link("edit_goal_#{read_book.id}")
 
@@ -60,7 +60,7 @@ feature "goal management", type: :feature do
     end
 
     scenario 'delete goal', js: true do
-      read_book = create(:read_Ready_Player_One_book, category: @cb)
+      read_book = create(:read_Ready_Player_One_book, category: @category_book)
       visit admin_goals_path
       page.accept_alert 'Are you sure?' do
         click_link("delete_goal_#{read_book.id}")
