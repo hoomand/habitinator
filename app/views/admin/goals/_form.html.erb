@@ -103,7 +103,6 @@
   function check_category_type() {
     var el = document.getElementById("goal_category_id");
     var str = el.options[el.selectedIndex].getAttribute('parent_type');
-    console.log(str)
     if(str == "number") {
       show();
     }else {
