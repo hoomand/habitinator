@@ -10,4 +10,9 @@ FactoryBot.define do
     unit_type 'boolean'
     unit_name 'session'
   end
+
+  factory :category_kindle, class: 'Category' do
+    name 'kindle books'
+    unit_type 'percent'
+  end
 end
