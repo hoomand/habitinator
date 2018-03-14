@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :users
 
     get 'home/index'
+    get 'goal/:id/log', to: 'goals#log', as: :log_goal
   end
 
   authenticated :user do
