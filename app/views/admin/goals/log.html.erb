@@ -1,1 +1,8 @@
-I am the log
+<%= form_for [:admin, @goal], html: {class: 'form-horizontal'} do |f| %>
+  <% if @goal.category.unit_type == 'boolean' %>
+    Have you done it?
+    <br />
+    <%= f.submit "Yes", class: 'btn btn-primary' %>
+    <%= link_to 'No', admin_goals_path, class: 'btn btn-secondary' %>
+  <% end %>
+<% end %>
