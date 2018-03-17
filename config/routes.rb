@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :goals
     resources :categories
     resources :users
+    resources :ledgers
 
     get 'home/index'
     get 'goal/:id/log', to: 'goals#log', as: :log_goal

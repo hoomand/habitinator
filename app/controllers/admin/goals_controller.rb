@@ -24,10 +24,6 @@ class Admin::GoalsController < Admin::ApplicationController
   def show
   end
 
-  def log
-    @goal = Goal.find(params[:id])
-  end
-
   def edit
     @goal = Goal.find(params[:id])
     @categories = Category.all

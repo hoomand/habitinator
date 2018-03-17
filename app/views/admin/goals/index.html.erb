@@ -26,7 +26,7 @@
             <td><%= goal.created_at_formatted %></td>
             <td><%= goal.updated_at_formatted %></td>
             <td>
-                <%= link_to(admin_log_goal_url(goal), id: "log_goal_#{goal.id}") do %>
+                <%= link_to(new_admin_ledger_path(goal: goal), id: "log_goal_#{goal.id}") do %>
                   <%= fa_icon 'save' %>
                 <% end %>
             </td>
