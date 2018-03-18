@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     resources :ledgers
 
     get 'home/index'
-    get 'goal/:id/log', to: 'goals#log', as: :log_goal
   end
 
   authenticated :user do
