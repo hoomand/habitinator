@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223022736) do
+ActiveRecord::Schema.define(version: 20180318062300) do
 
   create_table "categories", force: :cascade do |t|
     t.integer "user_id"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20180223022736) do
   create_table "ledgers", force: :cascade do |t|
     t.integer "goal_id"
     t.decimal "value"
-    t.date "entry_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
