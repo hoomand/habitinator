@@ -28,7 +28,7 @@ feature "goal management", type: :feature do
     end
 
     scenario 'creates a gym going goal' do
-      gym = build(:attend_bodypump, category: @category_gym)
+      gym = build(:attend_body_pump, category: @category_gym)
       visit new_admin_goal_path
       fill_in 'goal[name]', with: gym.name
       select @category_gym.name, from: "goal[category_id]"

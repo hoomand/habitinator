@@ -5,8 +5,8 @@ FactoryBot.define do
     goal_value 385
   end
 
-  factory :attend_bodypump, class: 'Goal' do
-    name 'go to bodypump class'
+  factory :attend_body_pump, class: 'Goal' do
+    name 'go to BodyPump class'
     frequency 'weekly'
     goal_value 3
     new_entry_add_to_total true
