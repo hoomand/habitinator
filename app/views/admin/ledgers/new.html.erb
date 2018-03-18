@@ -1,11 +1,25 @@
-<%= form_for [:admin, @ledger], html: {class: 'form-horizontal'} do |f| %>
-  <% if @ledger.goal.category.unit_type == 'boolean' %>
-    Want to clock in another <%= @ledger.goal.name %> today?
-    <br />
-    <br />
-    <%= f.hidden_field :goal_id, value: @ledger.goal.id %>
-    <%= f.hidden_field :value, value: 1 %>
-    <%= f.submit "Yes", class: 'btn btn-primary' %>
-    <%= link_to 'No', admin_goals_path, class: 'btn btn-secondary' %>
+<div class="card-body">
+  <%= form_for [:admin, @ledger], html: {class: 'form-horizontal'} do |f| %>
+    <% if @ledger.goal.category.unit_type == 'boolean' %>
+
+      <div class="form-group row">
+        Want to clock in another <%= @ledger.goal.name %> today?
+        &nbsp;
+        &nbsp;
+        <%= f.hidden_field :goal_id, value: @ledger.goal.id %>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-primary <%= 'active' if @ledger.value == 1 %>">
+            <%= f.radio_button :value, '1' %> Yes
+          </label>
+          <label class="btn btn-secondary <%= 'active' unless @ledger.value == 1 %>">
+            <%= f.radio_button :value, '0' %> No
+          </label>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.submit "Submit", class: 'btn btn-primary' %>
+        <%= link_to 'Cancel', admin_goals_path, class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
