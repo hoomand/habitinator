@@ -8,10 +8,10 @@
         &nbsp;
         <%= f.hidden_field :goal_id, value: @ledger.goal.id %>
         <div class="btn-group" data-toggle="buttons">
-          <label class="btn btn-primary <%= 'active' if @ledger.value == 1 %>">
+          <label id="yes_label" class="btn btn-primary <%= 'active' if @ledger.value == 1 %>">
             <%= f.radio_button :value, '1' %> Yes
           </label>
-          <label class="btn btn-secondary <%= 'active' unless @ledger.value == 1 %>">
+          <label id="no_label" class="btn btn-secondary <%= 'active' unless @ledger.value == 1 %>">
             <%= f.radio_button :value, '0' %> No
           </label>
         </div>
