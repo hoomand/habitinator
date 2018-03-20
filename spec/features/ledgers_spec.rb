@@ -34,8 +34,27 @@ feature "log goals", type: :feature do
       click_button 'Submit'
       expect(Ledger.where(id: 1, goal_id: body_pump.id, value: 0)).to exist
       expect(page).to have_content("Progress updated for #{body_pump.name}")
+    end
 
+    scenario 'log a goal with category type of numeric' do
+      read_book = create(:read_Ready_Player_One_book, category: @category_book)
+      visit admin_goals_path
+      click_link "log_goal_#{read_book.id}"
 
+      expect(page).to have_content("New Progress:")
+      fill_in 'ledger[value]', with: '52'
+      click_button 'Submit'
+      expect(Ledger.where(id: 1, goal_id: read_book.id, value: 52)).to exist
+      expect(page).to have_content("Progress for #{read_book.name} was saved successfully")
+
+      # Update progress to 65
+      click_link "log_goal_#{read_book.id}"
+      expect(page).to have_content("New Progress:")
+      expect(find_field('ledger[value]').value).to eq '52.0'
+      fill_in 'ledger[value]', with: '65'
+      click_button 'Submit'
+      expect(Ledger.where(id: 1, goal_id: read_book.id, value: 65)).to exist
+      expect(page).to have_content("Progress updated for #{read_book.name}")
     end
   end
 end
