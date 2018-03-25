@@ -1,2 +1,25 @@
-<h1>Admin::Goals#show</h1>
-<p>Find me in app/views/admin/goals/show.html.erb</p>
+<div class="card">
+  <div class="card-header d-flex align-items-center">
+    <h3 class="h4"><%= @goal.name %></h3>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive table-striped">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>Entry</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @goal.ledgers.each do |ledger| %>
+          <tr>
+            <td><%= ledger.created_at.strftime("%Y-%m-%d") %></td>
+            <td><%= ledger.value %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

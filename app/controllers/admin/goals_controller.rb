@@ -22,6 +22,7 @@ class Admin::GoalsController < Admin::ApplicationController
   end
 
   def show
+    @goal = Goal.find(params[:id])
   end
 
   def edit

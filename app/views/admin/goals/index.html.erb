@@ -19,7 +19,7 @@
         <tbody>
         <% @goals.each do |goal| %>
           <tr>
-            <td><%= goal.name %></td>
+            <td><%= link_to(goal.name, admin_goal_url(goal)) %></td>
             <td><%= goal.category.name %></td>
             <td><%= goal.frequency %></td>
             <td><%= goal.new_entry_add_to_total ? 'Yes' : 'No' %></td>
