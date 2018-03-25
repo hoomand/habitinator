@@ -22,4 +22,7 @@
       </table>
     </div>
   </div>
+  <div class="card-body">
+    <%= line_chart @goal.ledgers.group_by_day(:created_at).count %>
+  </div>
 </div>

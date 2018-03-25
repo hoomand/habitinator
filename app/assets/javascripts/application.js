@@ -17,4 +17,6 @@
 //= require bootstrap-sprockets
 //= require jquery.easing
 //= require jquery-ui
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .
