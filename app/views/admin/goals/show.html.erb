@@ -23,6 +23,10 @@
     </div>
   </div>
   <div class="card-body">
-    <%= column_chart admin_charts_goal_logs_path(@goal.id) %>
+    <% if @goal.category.unit_type == 'boolean' %>
+      <%= column_chart admin_charts_goal_logs_path('daily_logged_yes_no', @goal.id) %>
+    <% else %>
+      <%= line_chart admin_charts_goal_logs_path('raising', @goal.id) %>
+    <% end %>
   </div>
 </div>

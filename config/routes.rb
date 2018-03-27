@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get 'home/index'
 
     # Charts JSON APIs
-    get 'charts/goal/:id/logs', to: 'charts#goal_logs', as: 'charts_goal_logs'
+    get 'charts/:type/goal/:id/logs', to: 'charts#goal_logs', as: 'charts_goal_logs'
   end
 
   authenticated :user do

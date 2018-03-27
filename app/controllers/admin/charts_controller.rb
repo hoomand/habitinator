@@ -3,7 +3,23 @@ class Admin::ChartsController < Admin::ApplicationController
 
   def goal_logs
     goal = Goal.find(params[:id])
-    render json: goal.ledgers.group_by_day(:created_at, range: goal.created_at..Time.now).count
+    case params[:type]
+      when 'daily_logged_yes_no'
+        render json: goal.ledgers.group_by_day(:created_at, range: goal.created_at..Time.now).count
+      when 'raising'
+        datapoints = goal.ledgers.group_by_day(:created_at).sum(:value)
+        graph = {}
+        most_recent_positive_value = 0
+        datapoints.each do |date, value|
+          if value > 0
+            most_recent_positive_value = value
+          else
+            value = most_recent_positive_value
+          end
+          graph[date] = value
+        end
+        render json: graph
+    end
   end
 
 
