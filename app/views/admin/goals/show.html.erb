@@ -23,6 +23,6 @@
     </div>
   </div>
   <div class="card-body">
-    <%= line_chart @goal.ledgers.group_by_day(:created_at).count %>
+    <%= column_chart admin_charts_goal_logs_path(@goal.id) %>
   </div>
 </div>

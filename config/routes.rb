@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'home/index'
 
-  devise_for :users, :controllers => { registrations: 'registrations' }
+  devise_for :users, :controllers => {registrations: 'registrations'}
 
   namespace :admin do
     resources :goals
@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     resources :ledgers
 
     get 'home/index'
+
+    # Charts JSON APIs
+    get 'charts/goal/:id/logs', to: 'charts#goal_logs', as: 'charts_goal_logs'
   end
 
   authenticated :user do
