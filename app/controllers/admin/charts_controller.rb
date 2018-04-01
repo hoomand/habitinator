@@ -3,9 +3,11 @@ class Admin::ChartsController < Admin::ApplicationController
 
   def goal_logs
     goal = Goal.find(params[:id])
+    time = params[:start_date].nil? ? Time.now : params[:start_date].to_time
+    creation_time_range = time.beginning_of_month..time.end_of_month
     case params[:type]
       when 'daily_logged_yes_no'
-        render json: goal.ledgers.group_by_day(:created_at, range: goal.created_at..Time.now).count
+        render json: goal.ledgers.group_by_day(:created_at, range: creation_time_range).count
       when 'raising'
         datapoints = goal.ledgers.group_by_day(:created_at).sum(:value)
         graph = {}
