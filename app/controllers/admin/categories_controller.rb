@@ -18,18 +18,18 @@ class Admin::CategoriesController < Admin::ApplicationController
   end
 
   def index
-    @categories = Category.all
+    @categories = current_user.categories
   end
 
   def show
   end
 
   def edit
-    @category = Category.find(params[:id])
+    @category = find_or_redirect(params[:id])
   end
 
   def update
-    @category = Category.find(params[:id])
+    @category = find_or_redirect(params[:id])
     @category.update(category_params)
 
     flash[:notice] = 'Category updated'
@@ -37,9 +37,9 @@ class Admin::CategoriesController < Admin::ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id])
-    @category.destroy
+    @category = find_or_redirect(params[:id])
 
+    @category.destroy
     flash[:notice] = "Category #{@category.name} was deleted successfully"
     redirect_to admin_categories_path
   end
@@ -48,5 +48,14 @@ class Admin::CategoriesController < Admin::ApplicationController
 
   def category_params
     params.require(:category).permit(:name, :unit_type, :unit_name)
+  end
+
+  def find_or_redirect(id)
+    category = current_user.categories.find_by id: id
+    if category.nil?
+      flash[:alert] = 'Category does not exist'
+      redirect_to admin_categories_path
+    end
+    category
   end
 end

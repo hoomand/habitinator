@@ -3,7 +3,7 @@ class Admin::GoalsController < Admin::ApplicationController
 
   def new
     @goal = Goal.new
-    @categories = Category.all
+    @categories = current_user.categories
   end
 
   def create
@@ -18,20 +18,20 @@ class Admin::GoalsController < Admin::ApplicationController
   end
 
   def index
-    @goals = Goal.all
+    @goals = current_user.goals
   end
 
   def show
-    @goal = Goal.find(params[:id])
+    @goal = find_or_redirect(params[:id])
   end
 
   def edit
-    @goal = Goal.find(params[:id])
-    @categories = Category.all
+    @goal = find_or_redirect(params[:id])
+    @categories = current_user.categories
   end
 
   def update
-    @goal = Goal.find(params[:id])
+    @goal = find_or_redirect(params[:id])
     if @goal.update(goal_params)
       flash[:notice] = 'Goal updated'
       redirect_to admin_goals_path
@@ -42,7 +42,7 @@ class Admin::GoalsController < Admin::ApplicationController
   end
 
   def destroy
-    @goal = Goal.find(params[:id])
+    @goal = find_or_redirect(params[:id])
     @goal.delete
 
     flash[:notice] = "Goal #{@goal.name} was successfully deleted"
@@ -50,6 +50,7 @@ class Admin::GoalsController < Admin::ApplicationController
   end
 
   private
+
   def goal_params
     params.require(:goal).permit(
         :name,
@@ -59,6 +60,15 @@ class Admin::GoalsController < Admin::ApplicationController
         :goal_value,
         :new_entry_add_to_total
     )
+  end
+
+  def find_or_redirect(id)
+    goal = current_user.goals.find_by id: id
+    if goal.nil?
+      flash[:alert] = 'Specified goal does not exist'
+      redirect_to admin_goals_path
+    end
+    goal
   end
 end
 

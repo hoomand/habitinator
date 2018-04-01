@@ -20,7 +20,7 @@
           f.select(
               :category_id,
               options_for_select(
-                  Category.all.map do |c|
+                  categories.all.map do |c|
                     [c.name, c.id, { parent_type: c.unit_type, unit_name: c.unit_name }]
                   end,
                   selected: goal[:category_id]
