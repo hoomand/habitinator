@@ -22,16 +22,16 @@ class Admin::GoalsController < Admin::ApplicationController
   end
 
   def show
-    @goal = find_or_redirect(params[:id])
+    @goal = find_or_redirect(:goal, params[:id])
   end
 
   def edit
-    @goal = find_or_redirect(params[:id])
+    @goal = find_or_redirect(:goal, params[:id])
     @categories = current_user.categories
   end
 
   def update
-    @goal = find_or_redirect(params[:id])
+    @goal = find_or_redirect(:goal, params[:id])
     if @goal.update(goal_params)
       flash[:notice] = 'Goal updated'
       redirect_to admin_goals_path
@@ -42,7 +42,7 @@ class Admin::GoalsController < Admin::ApplicationController
   end
 
   def destroy
-    @goal = find_or_redirect(params[:id])
+    @goal = find_or_redirect(:goal, params[:id])
     @goal.delete
 
     flash[:notice] = "Goal #{@goal.name} was successfully deleted"
@@ -62,13 +62,5 @@ class Admin::GoalsController < Admin::ApplicationController
     )
   end
 
-  def find_or_redirect(id)
-    goal = current_user.goals.find_by id: id
-    if goal.nil?
-      flash[:alert] = 'Specified goal does not exist'
-      redirect_to admin_goals_path
-    end
-    goal
-  end
 end
 
