@@ -3,8 +3,9 @@ class Admin::LedgersController < Admin::ApplicationController
 
   def new
     raise 'Goal must be provided' unless params.key?('goal')
-    goal = Goal.find(params[:goal])
-    today_ledger = find_today_ledger(goal.id)
+    goal = find_or_redirect(:goal, params[:goal])
+    return nil if goal.nil?
+    today_ledger = find_today_ledger(goal.id) unless goal.nil?
     @ledger = today_ledger.empty? ? Ledger.new(goal: goal) : today_ledger.first
   end
 
@@ -19,7 +20,7 @@ class Admin::LedgersController < Admin::ApplicationController
   end
 
   def update
-    ledger = Ledger.find(params[:id])
+    ledger = find_or_redirect(:ledger, params[:id])
     ledger.update(ledger_params)
 
     flash[:notice] = "Progress updated for #{ledger.goal.name}"
@@ -27,6 +28,7 @@ class Admin::LedgersController < Admin::ApplicationController
   end
 
   private
+
   def ledger_params
     params.require(:ledger).permit(
         :goal_id,
