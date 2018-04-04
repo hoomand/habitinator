@@ -32,6 +32,7 @@ class Admin::GoalsController < Admin::ApplicationController
 
   def update
     @goal = find_or_redirect(:goal, params[:id])
+    return if @goal.nil?
     if @goal.update(goal_params)
       flash[:notice] = 'Goal updated'
       redirect_to admin_goals_path
