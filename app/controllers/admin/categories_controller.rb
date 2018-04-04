@@ -30,6 +30,7 @@ class Admin::CategoriesController < Admin::ApplicationController
 
   def update
     @category = find_or_redirect(:category, params[:id])
+    return if @category.nil?
     @category.update(category_params)
 
     flash[:notice] = 'Category updated'
