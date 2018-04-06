@@ -2,6 +2,18 @@
   <div class="card-header d-flex align-items-center">
     <h3 class="h4"><%= @goal.name %></h3>
   </div>
+  <% unless @goal.progress.nil? %>
+
+    <div class="card-body">
+      <div class="card-header d-flex align-items-center">
+        <h3 class="h4">Progress</h3>
+      </div>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: <%= @goal.progress %>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+
+  <% end %>
   <div class="card-body">
     <%= month_calendar events: @goal.ledgers do |date, ledgers| %>
       <%= date %>

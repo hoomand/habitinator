@@ -10,4 +10,22 @@ class Goal < ApplicationRecord
 
   validates :name, presence: true
   validates :frequency, presence: true
+
+  def progress
+    return nil if category.unit_type == 'boolean' || goal_value.nil?
+
+    case frequency.to_sym
+      when :daily
+        total = ledgers.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).sum('value')
+        return (total / goal_value) * 100
+      when :weekly
+        total = ledgers.where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_day).sum('value')
+      when :monthly
+        total = ledgers.where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_day).sum('value')
+      when :other
+        total = ledgers.sum('value')
+    end
+
+    (total / goal_value) * 100
+  end
 end
