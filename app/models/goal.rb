@@ -26,6 +26,23 @@ class Goal < ApplicationRecord
         total = ledgers.sum('value')
     end
 
-    (total / goal_value) * 100
+    total
+  end
+
+  def progress_percentage
+    (progress / goal_value) * 100
+  end
+
+  def progress_unit
+    case frequency.to_sym
+      when :daily
+        'today'
+      when :weekly
+        'this week'
+      when :monthly
+        'this month'
+      when :other
+        "till #{end_target}"
+    end
   end
 end
