@@ -17,7 +17,6 @@ class Goal < ApplicationRecord
     case frequency.to_sym
       when :daily
         total = ledgers.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).sum('value')
-        return (total / goal_value) * 100
       when :weekly
         total = ledgers.where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_day).sum('value')
       when :monthly

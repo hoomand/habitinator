@@ -50,6 +50,19 @@ feature "goal management", type: :feature do
       expect(page).to have_content "Goal updated"
     end
 
+    scenario 'show book-reading goal' do
+      read_book = create(
+          :read_Ready_Player_One_book,
+          category: @category_book
+      )
+      create(:ledger_day_1, goal: read_book, created_at: DateTime.now.strftime('%Y-%m-%d'))
+      create(:ledger_day_2, goal: read_book, created_at: DateTime.now.strftime('%Y-%m-%d'))
+
+      visit admin_goal_path(read_book)
+      expect(page).to have_content '110.0 out of 385 today'
+      expect(page).to have_selector('.simple-calendar')
+    end
+
     scenario 'delete goal', js: true do
       read_book = create(:read_Ready_Player_One_book, category: @category_book)
       visit admin_goals_path
