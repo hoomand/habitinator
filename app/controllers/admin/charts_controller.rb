@@ -14,11 +14,13 @@ class Admin::ChartsController < Admin::ApplicationController
         most_recent_positive_value = 0
         datapoints.each do |date, value|
           if value > 0
-            most_recent_positive_value = value
-          else
-            value = most_recent_positive_value
+            if goal.new_entry_add_to_total?
+              most_recent_positive_value += value
+            else
+              most_recent_positive_value = value
+            end
           end
-          graph[date] = value
+          graph[date] = most_recent_positive_value
         end
         render json: graph
     end

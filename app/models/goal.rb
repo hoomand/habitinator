@@ -12,17 +12,17 @@ class Goal < ApplicationRecord
   validates :frequency, presence: true
 
   def progress
-    return nil if category.unit_type == 'boolean' || goal_value.nil?
+    return nil if goal_value.nil?
 
     case frequency.to_sym
       when :daily
-        total = ledgers.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).sum('value')
+        total = daily_ledger_value
       when :weekly
-        total = ledgers.where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_day).sum('value')
+        total = weekly_ledger_value
       when :monthly
-        total = ledgers.where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_day).sum('value')
+        total = monthly_ledger_value
       when :other
-        total = ledgers.sum('value')
+        total = target_date_ledger_value
     end
 
     total
@@ -42,6 +42,51 @@ class Goal < ApplicationRecord
         'this month'
       when :other
         "till #{end_target}"
+    end
+  end
+
+  private
+
+  def daily_ledger_value
+    if new_entry_add_to_total?
+      ledgers.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).sum('value')
+    else
+      ledgers
+        .where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+        .order('created_at DESC').limit(1)
+        .sum('value')
+    end
+  end
+
+  def weekly_ledger_value
+    if new_entry_add_to_total?
+      ledgers
+        .where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_day)
+        .sum('value')
+    else
+      ledgers
+        .where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_day)
+        .order('created_at DESC').limit(1)[0]['value']
+    end
+  end
+
+  def monthly_ledger_value
+    if new_entry_add_to_total?
+      ledgers
+        .where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_day)
+        .sum('value')
+    else
+      ledgers
+        .where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_day)
+        .limit(1)[0]['value']
+    end
+  end
+
+  def target_date_ledger_value
+    if new_entry_add_to_total?
+      ledgers.sum('value')
+    else
+      ledgers.order('created_at DESC').limit(1)[0]['value']
     end
   end
 end
