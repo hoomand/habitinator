@@ -56,6 +56,8 @@ class Goal < ApplicationRecord
         .order('created_at DESC').limit(1)
         .sum('value')
     end
+  rescue
+    nil
   end
 
   def weekly_ledger_value
@@ -68,6 +70,8 @@ class Goal < ApplicationRecord
         .where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_day)
         .order('created_at DESC').limit(1)[0]['value']
     end
+  rescue
+    nil
   end
 
   def monthly_ledger_value
@@ -80,6 +84,8 @@ class Goal < ApplicationRecord
         .where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_day)
         .limit(1)[0]['value']
     end
+  rescue
+    nil
   end
 
   def target_date_ledger_value
