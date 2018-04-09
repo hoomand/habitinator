@@ -29,7 +29,7 @@ class Goal < ApplicationRecord
   end
 
   def progress_percentage
-    (progress / goal_value) * 100
+    (Float(progress) / goal_value) * 100
   end
 
   def progress_unit

@@ -59,7 +59,7 @@ feature "goal management", type: :feature do
       create(:ledger_day_2, goal: read_book, created_at: DateTime.now.strftime('%Y-%m-%d'))
 
       visit admin_goal_path(read_book)
-      expect(page).to have_content '110.0 out of 385 today'
+      expect(page).to have_content '110 out of 385 today'
       expect(page).to have_selector('.simple-calendar')
     end
 

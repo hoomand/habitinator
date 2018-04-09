@@ -50,7 +50,7 @@ feature "log goals", type: :feature do
       # Update progress to 65
       click_link "log_goal_#{read_book.id}"
       expect(page).to have_content("New Progress:")
-      expect(find_field('ledger[value]').value).to eq '52.0'
+      expect(find_field('ledger[value]').value).to eq '52'
       fill_in 'ledger[value]', with: '65'
       click_button 'Submit'
       expect(Ledger.where(id: 1, goal_id: read_book.id, value: 65)).to exist
