@@ -22,6 +22,7 @@ Rails.application.config.assets.precompile += %w( admin/layout/jquery.mCustomScr
 Rails.application.config.assets.precompile += %w( admin/layout/style.default.css )
 Rails.application.config.assets.precompile += %w( admin/layout/style.css )
 Rails.application.config.assets.precompile += %w( admin/layout/custom.css )
+Rails.application.config.assets.precompile += %w( admin/goals.css )
 
 Rails.application.config.assets.precompile += %w( admin/layout/grasp_mobile_progress_circle-1.0.0.min.js )
 Rails.application.config.assets.precompile += %w( admin/layout/front.js )
