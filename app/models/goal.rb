@@ -61,7 +61,7 @@ class Goal < ApplicationRecord
   end
 
   def weekly_ledger_value
-    if new_entry_add_to_total?
+    if new_entry_add_to_total? || self.category.unit_type == 'boolean'
       ledgers
         .where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_day)
         .sum('value')
@@ -75,7 +75,7 @@ class Goal < ApplicationRecord
   end
 
   def monthly_ledger_value
-    if new_entry_add_to_total?
+    if new_entry_add_to_total? || self.category.unit_type == 'boolean'
       ledgers
         .where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_day)
         .sum('value')
