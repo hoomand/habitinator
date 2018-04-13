@@ -2,10 +2,10 @@ class Goal < ApplicationRecord
   belongs_to :category
   has_many :ledgers
   enum frequency: {
-    daily: 0,
-    weekly: 1,
-    monthly: 3,
-    other: 4
+      daily: 0,
+      weekly: 1,
+      monthly: 3,
+      other: 4
   }
 
   validates :name, presence: true
@@ -48,14 +48,9 @@ class Goal < ApplicationRecord
   private
 
   def daily_ledger_value
-    if new_entry_add_to_total?
-      ledgers.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).sum('value')
-    else
-      ledgers
-        .where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
-        .order('created_at DESC').limit(1)
-        .sum('value')
-    end
+    # We don't care about new_entry_add_to_total for a daily goal
+    # We sum all entered values for a day
+    ledgers.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).sum('value')
   rescue
     nil
   end
@@ -63,12 +58,12 @@ class Goal < ApplicationRecord
   def weekly_ledger_value
     if new_entry_add_to_total? || category.unit_type == 'boolean'
       ledgers
-        .where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_day)
-        .sum('value')
+          .where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_day)
+          .sum('value')
     else
       ledgers
-        .where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_day)
-        .order('created_at DESC').limit(1)[0]['value']
+          .where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_day)
+          .order('created_at DESC').limit(1)[0]['value']
     end
   rescue
     nil
@@ -77,12 +72,12 @@ class Goal < ApplicationRecord
   def monthly_ledger_value
     if new_entry_add_to_total? || category.unit_type == 'boolean'
       ledgers
-        .where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_day)
-        .sum('value')
+          .where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_day)
+          .sum('value')
     else
       ledgers
-        .where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_day)
-        .limit(1)[0]['value']
+          .where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_day)
+          .limit(1)[0]['value']
     end
   rescue
     nil
