@@ -1,0 +1,46 @@
+AllCops:
+  Rail:
+    Enabled: true
+  DisplayCopNames: true
+  DisplayStyleGuide: false
+  ExtraDetails: false
+  UseCache: false
+  Exclude:
+    - Guardfile
+    - config/initializers/devise.rb
+    - bin/**/*
+    - spec/**/*
+    - db/schema.rb
+    - db/seeds.rb
+    - vendor/bundle/**/*
+
+# The archaic practice of 80-character line lengths is hilariously insufficient.
+Metrics/LineLength:
+  Max: 120
+
+# These values are rather contrived and have been reasonably adjusted to
+# reflect the broader application of length metrics in the real world.
+Metrics/ClassLength:
+  CountComments: false
+  Max: 120
+
+# See Metrics/ClassLength for more information.
+Metrics/ModuleLength:
+  CountComments: false
+  Max: 120
+
+# See Metrics/ClassLength for more information.
+Metrics/MethodLength:
+  CountComments: false
+  Max: 20
+
+# Don't require top-level class documentation.
+Style/Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 28
+
+# Enforce a maximum CyclomaticComplexity magnitude.
+Metrics/CyclomaticComplexity:
+  Max: 7
