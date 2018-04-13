@@ -1,8 +1,6 @@
 require 'rails_helper'
 
-feature "goal management", type: :feature do
-
-
+feature 'goal management', type: :feature do
   context 'signed-in user' do
     before(:each) do
       @user = create(:user)
@@ -15,24 +13,24 @@ feature "goal management", type: :feature do
       read_book = build(:read_Ready_Player_One_book, category: @category_book)
       visit new_admin_goal_path
       fill_in 'goal[name]', with: read_book.name
-      select @category_book.name, from: "goal[category_id]"
+      select @category_book.name, from: 'goal[category_id]'
       choose "goal_frequency_#{read_book.frequency}"
 
       fill_in 'goal[goal_value]', with: read_book.goal_value
       click_button 'Submit'
-      expect(page).to have_content "Goal created successfully"
+      expect(page).to have_content 'Goal created successfully'
     end
 
     scenario 'creates a gym going goal' do
       gym = build(:attend_body_pump, category: @category_gym)
       visit new_admin_goal_path
       fill_in 'goal[name]', with: gym.name
-      select @category_gym.name, from: "goal[category_id]"
+      select @category_gym.name, from: 'goal[category_id]'
       choose "goal_frequency_#{gym.frequency}"
       fill_in 'goal[goal_value]', with: gym.goal_value
 
       click_button 'Submit'
-      expect(page).to have_content "Goal created successfully"
+      expect(page).to have_content 'Goal created successfully'
     end
 
     scenario 'edits book-reading goal' do
@@ -44,16 +42,16 @@ feature "goal management", type: :feature do
       fill_in 'goal[name]', with: "#{read_book.name}_kindle_version"
       select @category_kindle.name, from: 'goal[category_id]'
       expect(page).to have_selector('#goal_value_div', visible: true)
-      choose "goal_frequency_monthly"
+      choose 'goal_frequency_monthly'
 
       click_button 'Submit'
-      expect(page).to have_content "Goal updated"
+      expect(page).to have_content 'Goal updated'
     end
 
     scenario 'show book-reading goal' do
       read_book = create(
-          :read_Ready_Player_One_book,
-          category: @category_book
+        :read_Ready_Player_One_book,
+        category: @category_book
       )
       create(:ledger_day_1, goal: read_book, created_at: DateTime.now.strftime('%Y-%m-%d'))
       create(:ledger_day_2, goal: read_book, created_at: DateTime.now.strftime('%Y-%m-%d'))
@@ -74,4 +72,3 @@ feature "goal management", type: :feature do
     end
   end
 end
-

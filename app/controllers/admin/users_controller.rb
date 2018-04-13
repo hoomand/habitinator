@@ -1,17 +1,15 @@
-class Admin::UsersController < Admin::ApplicationController
-  before_action :authenticate_user!
-  def index
-  end
+module Admin
+  class UsersController < Admin::ApplicationController
+    before_action :authenticate_user!
 
-  def show
-  end
+    def index; end
 
-  def edit
-  end
+    def show; end
 
-  def update
-  end
+    def edit; end
 
-  def delete
+    def update; end
+
+    def delete; end
   end
 end

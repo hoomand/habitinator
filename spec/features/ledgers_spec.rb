@@ -1,8 +1,6 @@
 require 'rails_helper'
 
-feature "log goals", type: :feature do
-
-
+feature 'log goals', type: :feature do
   context 'signed-in user' do
     before(:each) do
       @user = create(:user)
@@ -11,7 +9,6 @@ feature "log goals", type: :feature do
       @category_book = create(:category_book, user: @user)
       @category_gym = create(:category_gym, user: @user)
       @category_kindle = create(:category_kindle, user: @user)
-
     end
     scenario 'log Yes and then No for a goal with category type of boolean' do
       body_pump = create(:attend_body_pump, category: @category_gym)
@@ -41,7 +38,7 @@ feature "log goals", type: :feature do
       visit admin_goals_path
       click_link "log_goal_#{read_book.id}"
 
-      expect(page).to have_content("New Progress:")
+      expect(page).to have_content('New Progress:')
       fill_in 'ledger[value]', with: '52'
       click_button 'Submit'
       expect(Ledger.where(id: 1, goal_id: read_book.id, value: 52)).to exist
@@ -49,7 +46,7 @@ feature "log goals", type: :feature do
 
       # Update progress to 65
       click_link "log_goal_#{read_book.id}"
-      expect(page).to have_content("New Progress:")
+      expect(page).to have_content('New Progress:')
       expect(find_field('ledger[value]').value).to eq '52'
       fill_in 'ledger[value]', with: '65'
       click_button 'Submit'
@@ -58,4 +55,3 @@ feature "log goals", type: :feature do
     end
   end
 end
-

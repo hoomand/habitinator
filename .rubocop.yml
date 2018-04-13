@@ -1,6 +1,4 @@
 AllCops:
-  Rail:
-    Enabled: true
   DisplayCopNames: true
   DisplayStyleGuide: false
   ExtraDetails: false

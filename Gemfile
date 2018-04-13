@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
@@ -36,7 +35,7 @@ gem 'chartkick'
 gem 'groupdate'
 
 # Calendar
-gem "simple_calendar", "~> 2.0"
+gem 'simple_calendar', '~> 2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -48,24 +47,24 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
 
-  gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'guard-rspec'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'vcr'
-  gem 'rails-controller-testing'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
@@ -76,13 +75,13 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # frontend stuff
-gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'font-awesome-rails'
-gem 'simple-line-icons-rails'
 gem 'jquery-easing-rails'
-gem 'will_paginate', '~> 3.0'
+gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'simple-line-icons-rails'
+gem 'will_paginate', '~> 3.0'
 
 # For user authentication
 gem 'devise'

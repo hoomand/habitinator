@@ -1,29 +1,30 @@
-class Admin::ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
-  layout 'admin/application'
+module Admin
+  class ApplicationController < ActionController::Base
+    protect_from_forgery with: :exception
+    layout 'admin/application'
 
-  def find_or_redirect(object_type, id)
-    obj = nil
-    return_path = ''
+    def find_or_redirect(object_type, id)
+      obj = nil
+      return_path = ''
 
-    case object_type
-    when :goal
-      obj = current_user.goals.find_by id: id
-      return_path = admin_goals_path
-    when :category
-      obj = current_user.categories.find_by id: id
-      return_path = admin_categories_path
-    when :ledger
-      ledger = Ledger.find(id)
-      obj = ledger unless ledger.nil? || ledger.goal.category.user_id != current_user.id
-      return_path = admin_goals_path
+      case object_type
+      when :goal
+        obj = current_user.goals.find_by id: id
+        return_path = admin_goals_path
+      when :category
+        obj = current_user.categories.find_by id: id
+        return_path = admin_categories_path
+      when :ledger
+        ledger = Ledger.find(id)
+        obj = ledger unless ledger.nil? || ledger.goal.category.user_id != current_user.id
+        return_path = admin_goals_path
+      end
+
+      return obj unless obj.nil?
+
+      flash[:alert] = "Specified #{object_type} does not exist"
+      redirect_to return_path
+      obj
     end
-
-    return obj unless obj.nil?
-
-    flash[:alert] = "Specified #{object_type} does not exist"
-    redirect_to return_path
-    obj
   end
-
 end

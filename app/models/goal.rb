@@ -2,10 +2,10 @@ class Goal < ApplicationRecord
   belongs_to :category
   has_many :ledgers
   enum frequency: {
-      daily: 0,
-      weekly: 1,
-      monthly: 3,
-      other: 4
+    daily: 0,
+    weekly: 1,
+    monthly: 3,
+    other: 4
   }
 
   validates :name, presence: true
@@ -15,14 +15,14 @@ class Goal < ApplicationRecord
     return nil if goal_value.nil?
 
     case frequency.to_sym
-      when :daily
-        total = daily_ledger_value
-      when :weekly
-        total = weekly_ledger_value
-      when :monthly
-        total = monthly_ledger_value
-      when :other
-        total = target_date_ledger_value
+    when :daily
+      total = daily_ledger_value
+    when :weekly
+      total = weekly_ledger_value
+    when :monthly
+      total = monthly_ledger_value
+    when :other
+      total = target_date_ledger_value
     end
 
     total
@@ -34,14 +34,14 @@ class Goal < ApplicationRecord
 
   def progress_unit
     case frequency.to_sym
-      when :daily
-        'today'
-      when :weekly
-        'this week'
-      when :monthly
-        'this month'
-      when :other
-        "till #{end_target}"
+    when :daily
+      'today'
+    when :weekly
+      'this week'
+    when :monthly
+      'this month'
+    when :other
+      "till #{end_target}"
     end
   end
 
@@ -61,7 +61,7 @@ class Goal < ApplicationRecord
   end
 
   def weekly_ledger_value
-    if new_entry_add_to_total? || self.category.unit_type == 'boolean'
+    if new_entry_add_to_total? || category.unit_type == 'boolean'
       ledgers
         .where(created_at: Time.zone.now.beginning_of_week..Time.zone.now.end_of_day)
         .sum('value')
@@ -75,7 +75,7 @@ class Goal < ApplicationRecord
   end
 
   def monthly_ledger_value
-    if new_entry_add_to_total? || self.category.unit_type == 'boolean'
+    if new_entry_add_to_total? || category.unit_type == 'boolean'
       ledgers
         .where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_day)
         .sum('value')

@@ -1,8 +1,6 @@
 require 'rails_helper'
 
-feature "category management", type: :feature do
-
-
+feature 'category management', type: :feature do
   context 'signed-in user' do
     before(:each) do
       @user = create(:user)
@@ -16,7 +14,7 @@ feature "category management", type: :feature do
       fill_in 'category[unit_name]', with: category_book.unit_name
       click_button 'Submit'
 
-      expect(page).to have_content "Category created successfully"
+      expect(page).to have_content 'Category created successfully'
     end
 
     scenario 'creates category without a name' do
@@ -39,7 +37,7 @@ feature "category management", type: :feature do
       fill_in 'category[unit_name]', with: category_book.unit_name + '_edited'
       click_button 'Submit'
 
-      expect(page).to have_content "Category updated"
+      expect(page).to have_content 'Category updated'
     end
 
     scenario 'deletes category', js: true do
@@ -56,20 +54,19 @@ feature "category management", type: :feature do
   context 'anonymous user gets denied' do
     scenario 'listing categories' do
       visit admin_categories_path
-      expect(page).to have_content "You need to sign in or sign up before continuing"
+      expect(page).to have_content 'You need to sign in or sign up before continuing'
     end
 
     scenario 'creating categories' do
       visit new_admin_category_path
-      expect(page).to have_content "You need to sign in or sign up before continuing"
+      expect(page).to have_content 'You need to sign in or sign up before continuing'
     end
 
     scenario 'editing categories' do
       user = create(:user)
       category_book = create(:category_book, user: user)
       visit edit_admin_category_path(category_book)
-      expect(page).to have_content "You need to sign in or sign up before continuing"
+      expect(page).to have_content 'You need to sign in or sign up before continuing'
     end
   end
-
 end

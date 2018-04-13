@@ -1,7 +1,7 @@
-module Admin::ApplicationHelper
-  def active_controller?(controller)
-    if params[:controller] == controller
-      'active'
+module Admin
+  module ApplicationHelper
+    def active_controller?(controller)
+      'active' if params[:controller] == controller
     end
   end
 end
