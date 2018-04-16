@@ -34,7 +34,7 @@
       <div class="sidenav-header-inner text-center">
         <%= fa_icon ['user-circle', '4x'] %>
         <h2 class="h5">
-          <%= current_user.full_name %>
+          <%= link_to current_user.full_name, edit_user_registration_path %>
         </h2>
         <span>&nbsp;</span>
       </div>
