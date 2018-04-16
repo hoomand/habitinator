@@ -13,4 +13,12 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def creation_date
+    created_at.strftime('%Y-%m-%d').to_s
+  end
+
+  def last_sign_in_datetime
+    last_sign_in_at.strftime('%Y-%m-%d %H:%M:%S')
+  end
 end

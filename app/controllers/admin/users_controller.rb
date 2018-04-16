@@ -2,7 +2,9 @@ module Admin
   class UsersController < Admin::ApplicationController
     before_action :authenticate_user!, :authorize_admin
 
-    def index; end
+    def index
+      @users = User.all
+    end
 
     def show; end
 
