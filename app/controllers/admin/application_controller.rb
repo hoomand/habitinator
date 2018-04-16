@@ -26,5 +26,9 @@ module Admin
       redirect_to return_path
       obj
     end
+
+    def authorize_admin
+      redirect_to root_path, alert: 'Access Denied: need to be admin' unless current_user.admin?
+    end
   end
 end

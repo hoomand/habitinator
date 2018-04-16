@@ -64,16 +64,20 @@
         </li>
       </ul>
     </div>
-    <div class="admin-menu">
-      <h5 class="sidenav-heading">Site Admin</h5>
-      <ul id="side-admin-menu" class="side-menu list-unstyled">
-        <li>
-          <a href="#">
-            <%= fa_icon 'users' %>Users
-          </a>
-        </li>
-      </ul>
-    </div>
+    <% if current_user.admin? %>
+      <div class="admin-menu">
+        <h5 class="sidenav-heading">Site Admin</h5>
+        <ul id="side-admin-menu" class="side-menu list-unstyled">
+          <li>
+            <a href="#">
+              <%= link_to(admin_users_path) do %>
+                <%= fa_icon 'users' %>Users
+              <% end %>
+            </a>
+          </li>
+        </ul>
+      </div>
+    <% end %>
   </div>
 </nav>
 <div class="page">
