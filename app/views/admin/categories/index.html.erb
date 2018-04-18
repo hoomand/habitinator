@@ -36,6 +36,7 @@
                       method: :delete,
                       data: { confirm: 'Are you sure?' },
                       authenticity_token: true,
+                      class: 'danger',
                       id: "delete_category_#{category.id}") do %>
                 <%= fa_icon 'trash' %>
 

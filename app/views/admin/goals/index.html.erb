@@ -31,7 +31,7 @@
                         data: {confirm: 'Are you sure?'},
                         authenticity_token: true,
                         id: "delete_goal_#{goal.id}") do %>
-                  <%= fa_icon 'trash', style: 'color: red' %>
+                  <%= fa_icon 'trash', class: 'danger' %>
 
                 <% end %>
               </div>
