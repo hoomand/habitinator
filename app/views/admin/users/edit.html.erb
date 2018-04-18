@@ -1,2 +1,42 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class="card-header d-flex align-items-center">
+  <h3 class="h4">Edit <%= @user.email %></h3>
+</div>
+<div class="card-body">
+  <%= form_for [:admin, @user], html: {class: 'form-horizontal'} do |f| %>
+    <% if @user.errors.any? %>
+      <% @user.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger"><%= msg %></div>
+      <% end %>
+    <% end %>
+
+    <div class="form-group row">
+      <%= f.label :first_name, class: 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= f.text_field :first_name, autofocus: true, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :last_name, class: 'col-sm-2 form-control-label' %>
+      <div class="col-sm-10">
+        <%= f.text_field :last_name, autofocus: true, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :role, class: 'col-sm-2 form-control-label' %>
+      <div class="col-sm-5">
+        <%= f.radio_button :role, 'user' %>
+        <%= f.label "role_user", 'User' %>
+      </div>
+      <div class="col-sm-5">
+        <%= f.radio_button :role, 'admin' %>
+        <%= f.label "role_admin", 'Administrator' %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Update", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
