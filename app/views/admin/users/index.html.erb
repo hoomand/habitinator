@@ -14,20 +14,44 @@
           <th>Role</th>
           <th>Creation Date</th>
           <th>Last Sign In</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
         </tr>
         </thead>
         <tbody>
         <% @users.each do |user| %>
-        <tr>
-          <td><%= user.email %></td>
-          <td><%= user.sign_in_count %></td>
-          <td><%= user.first_name %></td>
-          <td><%= user.last_name %></td>
-          <td><%= user.role %></td>
-          <td><%= user.creation_date %></td>
-          <td><%= user.last_sign_in_datetime %></td>
-        </tr>
-          <% end %>
+          <tr>
+            <td><%= user.email %></td>
+            <td><%= user.sign_in_count %></td>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.role %></td>
+            <td><%= user.creation_date %></td>
+            <td><%= user.last_sign_in_datetime %></td>
+            <% if user.admin? %>
+              <td colspan="2"></td>
+            <% else %>
+              <td>
+                <%= link_to(edit_admin_user_path(user), id: "edit_user_#{user.id}") do %>
+                  <%= fa_icon 'edit' %>
+
+                <% end %>
+              </td>
+              <td>
+                <%= link_to(
+                        admin_user_path(user),
+                        method: :delete,
+                        data: {confirm: 'Are you sure?'},
+                        authenticity_token: true,
+                        class: 'danger',
+                        id: "delete_user_#{user.id}") do %>
+                  <%= fa_icon 'trash' %>
+
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
         </tbody>
       </table>
     </div>

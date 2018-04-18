@@ -18,6 +18,9 @@ module Admin
         ledger = Ledger.find(id)
         obj = ledger unless ledger.nil? || ledger.goal.category.user_id != current_user.id
         return_path = admin_goals_path
+      when :user
+        obj = User.find_by id: id
+        return_path = admin_users_path
       end
 
       return obj unless obj.nil?
