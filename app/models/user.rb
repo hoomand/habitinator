@@ -9,7 +9,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  enum role: { user: 0, admin: 1 }
+  enum role: {user: 0, admin: 1}
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -20,5 +21,15 @@ class User < ApplicationRecord
 
   def last_sign_in_datetime
     last_sign_in_at.strftime('%Y-%m-%d %H:%M:%S')
+  end
+
+  def ledgers
+    ledgers = []
+    goals.each do |goal|
+      goal.ledgers.each do |ledger|
+        ledgers << ledger
+      end
+    end
+    ledgers
   end
 end

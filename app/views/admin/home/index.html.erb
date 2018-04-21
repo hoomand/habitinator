@@ -51,7 +51,7 @@
             <div class="icon"><i class="icon-line-chart"></i></div>
             <div class="number"><%= @total_categories %></div>
             <strong class="text-primary">Total Categories</strong>
-            <p>Number of all categories defined by all users</p>
+            <p>Number of all categories defined by <%= @defined_by %></p>
           </div>
         </div>
         <div class="col-lg-4">
@@ -60,7 +60,7 @@
             <div class="icon"><i class="icon-line-chart"></i></div>
             <div class="number"><%= @total_goals %></div>
             <strong class="text-primary">Total Goals</strong>
-            <p>Number of all goals defined by all users</p>
+            <p>Number of all goals defined by <%= @defined_by %></p>
           </div>
         </div>
         <div class="col-lg-4">
@@ -69,7 +69,7 @@
             <div class="icon"><i class="icon-line-chart"></i></div>
             <div class="number"><%= @total_ledgers %></div>
             <strong class="text-primary">Total Logs</strong>
-            <p>Number of all logs defined by all users</p>
+            <p>Number of all logs defined by <%= @defined_by %></p>
           </div>
         </div>
 
