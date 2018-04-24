@@ -30,6 +30,7 @@
       <%= link_to('Logout', destroy_user_session_path, class: 'btn btn-primary btn-xl js-scroll-trigger"') %>
     <% else %>
       <%= link_to('Login', new_user_session_path, class: 'btn btn-primary btn-xl js-scroll-trigger"')  %>
+      <%= link_to('Signup', new_user_registration_path, class: 'btn btn-primary btn-xl js-scroll-trigger"')  %>
     <% end %>
     <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
   </div>
@@ -118,12 +119,12 @@
   <div class="container">
     <ul class="list-inline mb-5">
       <li class="list-inline-item">
-        <a class="social-link rounded-circle text-white mr-3" href="#">
+        <a class="social-link rounded-circle text-white mr-3" href="https://twitter.com/sirbijan" target="_blank">
           <i class="icon-social-twitter"></i>
         </a>
       </li>
       <li class="list-inline-item">
-        <a class="social-link rounded-circle text-white" href="#">
+        <a class="social-link rounded-circle text-white" href="https://github.com/sirbijan/habitinator" target="_blank">
           <i class="icon-social-github"></i>
         </a>
       </li>
