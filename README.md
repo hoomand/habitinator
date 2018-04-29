@@ -30,6 +30,32 @@ This shows you your progress during the time frame you specified (monthly for th
 ### How do I install and run Habitinator?
 
 
-* Ruby 2.4
-* Ruby on Rails 5.1
+#### Local
 
+It's very easy to run Habitinator on your own local machine.
+
+##### Software Requirements
+You need to install below requirements before attempting to install Habitinator locally. 
+
+* Ruby 2.4 ([recommended way to install](https://rvm.io/rvm/install))
+* Ruby on Rails 5.1 ([official installation guide](http://guides.rubyonrails.org/getting_started.html))
+
+If you are on Linux or Mac OSX, you should already have 'ruby' installed. You can try 'ruby -v' to see if you have it. However, if your ruby version is below 2.4, or if you do not have it installed, you can use the link I provided below.
+
+Follow the official Rails tutorial as how to install it on your box.
+
+##### Installation Guide
+Now that you have Ruby 2.4+ and Rails 5.1+ installed, you can safely run below commands in order:
+* git clone git@github.com:sirbijan/habitinator.git
+* cd habitinator
+* bundle install
+* rake db:setup
+* rails server
+
+At this point if everything went fine, you should see that Rails is listening on localhost:3000. Open your browser and browse to localhost:3000 to see your local version of Habitinator.
+
+You can use the email/password in the [seed file](https://github.com/sirbijan/habitinator/blob/master/db/seeds.rb) to login.
+
+#### Cloud
+##### Elastic Beanstalk
+If you are familiar with AWS Elastic Beanstalk, I'm happy to let you know that Habitinator gets easily deployed via Elastic Beanstalk and its EB CLI. You can follow [this tutorial](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_Ruby_rails.html) using your AWS account to have it setup in no time. I am using Elastic Beanstalk myself to deploy at [www.habitinator.com](https://www.habitinator.com). 
