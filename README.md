@@ -29,8 +29,20 @@ This shows you your progress during the time frame you specified (monthly for th
 
 ### How do I install and run Habitinator?
 
+#### Docker
+The easiest way to run Habitinator locally on your machine.
 
-#### Local
+* [Install Docker](https://docs.docker.com/install/)
+* git clone git@github.com:sirbijan/habitinator.git
+* cd habitinator
+* Run <i>docker build -t habitinator .</i>
+* Run <i>docker container run -p 80:3000 -d habitinator</i>
+
+Give it a few seconds to pass health checks and then you should be able to browse it on localhost:80.
+
+Needless to mention that if you already have another service listening on port 80, you can change the port to any desired free port.
+
+#### Local Installation
 
 It's very easy to run Habitinator on your own local machine.
 
