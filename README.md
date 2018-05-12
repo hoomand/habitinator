@@ -33,9 +33,18 @@ This shows you your progress during the time frame you specified (monthly for th
 The easiest way to run Habitinator locally on your machine.
 
 * [Install Docker](https://docs.docker.com/install/)
+
+Now you can either manually build the Docker image or pull it down from Docker
+Hub.
+
+To pull it down, run <i>docker pull sirbijan/habitinator</i>
+
+If you want to build it manually, run:
 * git clone git@github.com:sirbijan/habitinator.git
 * cd habitinator
 * Run <i>docker build -t habitinator .</i>
+
+After having the image, you simply need to run it:
 * Run <i>docker container run -p 80:3000 -d habitinator</i>
 
 Give it a few seconds to pass health checks and then you should be able to browse it on localhost:80.
